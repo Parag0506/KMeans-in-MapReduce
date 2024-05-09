@@ -1,4 +1,4 @@
-# KMeans Clustering for Advertising Data
+# AdCluster Insights: KMeans Clustering for Advertising Data
 
 This project utilizes Java with the MapReduce framework to perform KMeans clustering on advertising performance data, aiming to categorize key phrases based on performance metrics like bid amounts, impressions, clicks, and ad ranks. The purpose is to uncover underlying patterns in advertising strategies, offering insights that could potentially guide advertisers towards more impactful methodologies.
 
