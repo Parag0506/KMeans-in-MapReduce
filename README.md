@@ -39,6 +39,8 @@ centroid_id    avg_bid,impressions,clicks,rank
 - [AWS Deployment](#aws-deployment)
 - [Cleanup](#cleanup)
 - [Contributing](#contributing)
+- [Acknowledgement](#acknowledgments)
+- [Contact](#contact)
 - [License](#license)
 
 ## Prerequisites
@@ -104,6 +106,7 @@ Before you begin, ensure you have the following installed:
   ```bash
     docker build -f DockerfileAMD -t kmeans-project .
   ```
+
 #### Running the Container
   ```bash
     docker run -it --name kmeans-container kmeans-project
@@ -137,12 +140,46 @@ Ensure your Makefile is properly set up to handle tasks from compilation to clea
 - **Configure your AWS CLI and ensure your credentials are set up:**
 ```bash
     # Make sure to add your AWS Credentials for the following locations:-
-    ~./
+    ~/.aws/config
+    ~/.aws/credentials
 ```
 
+#### Launch and Manage EMR Cluster
+- **Create a bucket on S3:**
+```bash
+    make make-bucket
+```
+- **Upload the dataset to S3 Bucket:**
+```bash
+    make upload-input-aws
+```
+- **Upload the app jar to S3 Bucket:**
+```bash
+    make upload-app-aws
+```
+- **Deploy the application on AWS EMR:**
+```bash
+    make aws
+```
+- **Download results from AWS S3 after execution:**
+```bash
+    make download-output-aws
+```
 
+## Cleanup
+#### Local and AWS Resource Management
+- **Local cleanup:**
+```bash
+    make clean-local-output
+```
+- **AWS cleanup (to avoid unnecessary charges):**
+```bash
+    make delete-output-aws
+    aws emr terminate-clusters --cluster-ids <cluster-id>
+```
 
-
+## Contributing
+Contributions to enhance the project are welcome. Please create a branch for your contributions.
 
 ## Acknowledgments
 
@@ -154,3 +191,6 @@ Ensure your Makefile is properly set up to handle tasks from compilation to clea
 Parag Ghorpade - [Github Profile](https://github.com/Parag0506)
 
 Feel free to reach out for any questions or contributions to the project.
+
+## License
+Distributed under the Apache 2.0 License. See LICENSE for more information.
