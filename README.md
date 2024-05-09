@@ -1,50 +1,6 @@
 # KMeans Clustering for Advertising Data
 
 This project utilizes Java with the MapReduce framework to perform KMeans clustering on advertising performance data, aiming to categorize key phrases based on performance metrics like bid amounts, impressions, clicks, and ad ranks. The purpose is to uncover underlying patterns in advertising strategies, offering insights that could potentially guide advertisers towards more impactful methodologies.
-
-## Getting Started
-
-### Prerequisites
-
-- Java JDK 8 or higher
-- Apache Hadoop 3.x environment set up for MapReduce jobs
-- Maven for managing project dependencies and building the project
-
-### Installation
-
-1. Clone the repository to your local machine:
-
-```sh
-git clone https://github.com/KMeans/project-parag-ghorpade.git
-```
-
-2. Navigate to the project directory:
-
-```sh
-cd project-parag-ghorpade
-```
-
-3. Build the project using Maven:
-
-```sh
-mvn clean package
-```
-
-This command generates a JAR file in the target/ directory, which can be used to run the MapReduce job.
-
-### Running the MapReduce Job
-
-1. Make sure your Hadoop services are running. If not, start them using the start-dfs.sh and start-yarn.sh scripts in your Hadoop installation.
-2. Submit the MapReduce job using the Hadoop jar command. Replace <input-path>, <output-path>, and <centroids-path> with your specific paths:
-
-```sh
-hadoop jar target/kmeans-1.0.jar kc.KMeans <input-path> <output-path> <centroids-path>
-```
-
-- <input-path>: Path to the input dataset in HDFS.
-- <output-path>: HDFS path where the job's output will be saved. This path must not exist before running the job.
-- <centroids-path>: Local filesystem path to the file containing initial centroid values.
-
 ### Input Format
 
 Input Format
@@ -73,6 +29,120 @@ The MapReduce job outputs recalculated centroid values after processing the data
 ```sh
 centroid_id    avg_bid,impressions,clicks,rank
 ```
+
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Local Installation](#local-installation)
+  - [macOS and Ubuntu](#macos-and-ubuntu)
+- [Docker Deployment](#docker-deployment)
+- [Running the Application](#running-the-application)
+- [AWS Deployment](#aws-deployment)
+- [Cleanup](#cleanup)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Prerequisites
+Before you begin, ensure you have the following installed:
+- Java JDK 11
+- Apache Maven
+- Apache Hadoop 3.x
+- Apache Spark 3.x
+- Docker (optional for Docker deployment)
+- AWS CLI (configured for AWS deployment)
+
+## Local Installation
+### macOS and Ubuntu
+
+#### Step 1: Install Java JDK 11
+- **macOS:**
+  ```bash
+  brew install openjdk@11
+  ```
+- **Ubuntu:**
+  ```bash
+  sudo apt update
+  sudo apt install openjdk-11-jdk
+  ```
+
+#### Step 2: Install Maven
+- **macOS and Ubuntu:**
+  ```bash
+  brew install maven # macOS
+  sudo apt install maven # Ubuntu
+  ```
+#### Step 3: Install Hadoop
+- **Common for both OS:**
+  ```bash
+  wget https://downloads.apache.org/hadoop/common/hadoop-3.3.5/hadoop-3.3.5.tar.gz
+  tar -xzf hadoop-3.3.5.tar.gz -C /usr/local
+  sudo mv /usr/local/hadoop-3.3.5 /usr/local/hadoop
+  ```
+
+#### Step 4: Install Spark [For Spark Code to be added in future]
+- **Common for both OS:**
+  ```bash
+    wget https://archive.apache.org/dist/spark/spark-3.3.2/spark-3.3.2-bin-without-hadoop.tgz
+    tar -xzf spark-3.3.2-bin-without-hadoop.tgz -C /usr/local
+    sudo mv /usr/local/spark-3.3.2-bin-without-hadoop /usr/local/spark
+  ```
+
+#### Step 5: Set Environment Variables
+- **Add the following lines to your shell configuration file (.bashrc, .zshrc, etc.):**
+  ```bash
+    export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+    export HADOOP_HOME=/usr/local/hadoop
+    export SPARK_HOME=/usr/local/spark
+    export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/bin
+  ```
+## Docker Deployment
+#### Building the Docker Image
+- **For ARM64 architecture:**
+  ```bash
+    docker build -t kmeans-project .
+  ```
+- **For AMD64 architecture (adjust Dockerfile as needed):**
+  ```bash
+    docker build -f DockerfileAMD -t kmeans-project .
+  ```
+#### Running the Container
+  ```bash
+    docker run -it --name kmeans-container kmeans-project
+  ```
+#### Accessing the Container
+  ```bash
+    docker exec -it kmeans-container bash
+  ```
+## Running the Application
+#### Using Makefile
+Ensure your Makefile is properly set up to handle tasks from compilation to cleanup:
+
+- **Compile the project:**
+```bash
+    make jar
+```
+
+- **Run KMeans locally or within Docker:**
+```bash
+    make run-kmeans
+```
+
+- **Clean up generated output files:**
+```bash
+    make clean-local-output
+```
+
+## AWS Deployment
+
+#### Setup and Configuration
+- **Configure your AWS CLI and ensure your credentials are set up:**
+```bash
+    # Make sure to add your AWS Credentials for the following locations:-
+    ~./
+```
+
+
+
+
 
 ## Acknowledgments
 
