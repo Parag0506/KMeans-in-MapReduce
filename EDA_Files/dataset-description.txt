@@ -1,0 +1,53 @@
+Dataset: ydata-ysm-keyphrase-bid-imp-click-v1_0
+
+Yahoo! Search Marketing Advertiser Bid-Impression-Click data, version 1.0
+
+Full description:
+
+This dataset contains two files:
+
+ydata-ysm-keyphrase-bid-imp-click-v1_0.gz
+ydata-ysm-keyphrase-category-v1_0.txt
+
+The content of two files are as follows:
+
+=====================================================================
+(1) "ydata-ysm-keyphrase-bid-imp-click-v1_0.gz" contains the following fields:
+
+    0 day
+    1 anonymized account_id
+    2 rank
+    3 anonymized keyphrase (expressed as list of anonymized keywords)
+    4 avg bid
+    5 impressions
+    6 clicks
+
+    Primary key of the data is a combination of fields date, account_id, rank and keyphrase. Average bid, impressions and
+    clicks information is aggregated over the primary key.
+
+Snippet:
+
+1       08bade48-1081-488f-b459-6c75d75312ae    2       2affa525151b6c51 79021a2e2c836c1a 327e089362aac70c fca90e7f73f3c8ef af26d27737af376a    100.0     2.0     0.0
+29      08bade48-1081-488f-b459-6c75d75312ae    3       769ed4a87b5010f4 3d4b990abb0867c8 cd74a8342d25d090 ab9f74ae002e80ff af26d27737af376a    100.0     1.0     0.0
+29      08bade48-1081-488f-b459-6c75d75312ae    2       769ed4a87b5010f4 3d4b990abb0867c8 cd74a8342d25d090 ab9f74ae002e80ff af26d27737af376a    100.0     1.0     0.0
+11      08bade48-1081-488f-b459-6c75d75312ae    1       769ed4a87b5010f4 3d4b990abb0867c8 cd74a8342d25d090 ab9f74ae002e80ff af26d27737af376a    100.0     2.0     0.0
+76      08bade48-1081-488f-b459-6c75d75312ae    2       769ed4a87b5010f4 3d4b990abb0867c8 cd74a8342d25d090 ab9f74ae002e80ff af26d27737af376a    100.0     1.0     0.0
+48      08bade48-1081-488f-b459-6c75d75312ae    3       2affa525151b6c51 79021a2e2c836c1a 327e089362aac70c fca90e7f73f3c8ef af26d27737af376a    100.0     2.0     0.0
+97      08bade48-1081-488f-b459-6c75d75312ae    2       2affa525151b6c51 79021a2e2c836c1a 327e089362aac70c fca90e7f73f3c8ef af26d27737af376a    100.0     1.0     0.0
+123     08bade48-1081-488f-b459-6c75d75312ae    5       769ed4a87b5010f4 3d4b990abb0867c8 cd74a8342d25d090 ab9f74ae002e80ff af26d27737af376a    100.0     1.0     0.0
+119     08bade48-1081-488f-b459-6c75d75312ae    3       2affa525151b6c51 79021a2e2c836c1a 327e089362aac70c fca90e7f73f3c8ef af26d27737af376a    100.0     1.0     0.0
+73      08bade48-1081-488f-b459-6c75d75312ae    1       2affa525151b6c51 79021a2e2c836c1a 327e089362aac70c fca90e7f73f3c8ef af26d27737af376a    100.0     1.0     0.0
+
+=====================================================================
+(2) "ydata-ysm-keyphrase-category-v1_0.txt" contains the following fields
+    
+    0 anonymized keyphrase-category
+
+Snippet:
+
+de84da9dfd5a336d
+79021a2e2c836c1a
+cd74a8342d25d090
+3db691494440189b
+aef4ee042bea9c6b
+fc4f04e287746c48
