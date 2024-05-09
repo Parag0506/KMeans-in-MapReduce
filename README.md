@@ -55,7 +55,20 @@ Before you begin, ensure you have the following installed:
 ## Local Installation
 ### macOS and Ubuntu
 
-#### Step 1: Install Java JDK 11
+#### Step 1: Install Common Utilities and Packages
+- **macOS:**
+  ```bash
+  brew install wget curl vim make
+  # tzdata is generally not required for macOS, as timezone handling is built into the OS
+  ```
+- **Ubuntu:**
+  ```bash
+  sudo apt-get update
+  sudo apt-get install -y --no-install-recommends apt-utils wget curl vim make
+  sudo apt-get install -y tzdata
+  ```
+
+#### Step 2: Install Java JDK 11
 - **macOS:**
   ```bash
   brew install openjdk@11
@@ -63,16 +76,42 @@ Before you begin, ensure you have the following installed:
 - **Ubuntu:**
   ```bash
   sudo apt update
-  sudo apt install openjdk-11-jdk
+  sudo apt install -y openjdk-11-jdk
+  ```
+#### Step 3: Set JAVA_HOME Environment Variable
+- **Add to your .bashrc or .zshrc file:**
+  ```bash
+  export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+  # For macOS, adjust JAVA_HOME accordingly:
+  export JAVA_HOME=/usr/local/opt/openjdk@11
   ```
 
-#### Step 2: Install Maven
+#### Step 4: Install Maven
 - **macOS and Ubuntu:**
   ```bash
   brew install maven # macOS
   sudo apt install maven # Ubuntu
   ```
-#### Step 3: Install Hadoop
+#### Step 5: Install AWS CLI
+- **macOS:**
+  ```bash
+  brew install awscli
+  ```
+- **Ubuntu:**
+  ```bash
+  sudo apt-get install -y awscli
+  ```
+#### Step 6: Install Scala using Coursier (For Future implementation)
+- **Common for both OS:**
+  ```bash
+  curl -fLo cs https://github.com/coursier/coursier/releases/latest/download/cs-x86_64-pc-linux.gz
+  gunzip cs
+  chmod +x cs
+  ./cs setup -y
+  ./cs install scala:2.12.17 scalac:2.12.17
+  ```
+
+#### Step 7: Install Hadoop
 - **Common for both OS:**
   ```bash
   wget https://downloads.apache.org/hadoop/common/hadoop-3.3.5/hadoop-3.3.5.tar.gz
@@ -80,7 +119,7 @@ Before you begin, ensure you have the following installed:
   sudo mv /usr/local/hadoop-3.3.5 /usr/local/hadoop
   ```
 
-#### Step 4: Install Spark [For Spark Code to be added in future]
+#### Step 8: Install Spark [For Spark Code to be added in future]
 - **Common for both OS:**
   ```bash
     wget https://archive.apache.org/dist/spark/spark-3.3.2/spark-3.3.2-bin-without-hadoop.tgz
@@ -88,12 +127,12 @@ Before you begin, ensure you have the following installed:
     sudo mv /usr/local/spark-3.3.2-bin-without-hadoop /usr/local/spark
   ```
 
-#### Step 5: Set Environment Variables
+#### Step 9: Set Environment Variables
 - **Add the following lines to your shell configuration file (.bashrc, .zshrc, etc.):**
   ```bash
-    export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
     export HADOOP_HOME=/usr/local/hadoop
     export SPARK_HOME=/usr/local/spark
+    export SCALA_HOME=$HOME/.local/share/coursier/bin
     export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/bin
   ```
 ## Docker Deployment
