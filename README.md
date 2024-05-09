@@ -232,4 +232,4 @@ Parag Ghorpade - [Github Profile](https://github.com/Parag0506)
 Feel free to reach out for any questions or contributions to the project.
 
 ## License
-Distributed under the Apache 2.0 License. See LICENSE for more information.
+Distributed under the MIT License. See LICENSE for more information.
