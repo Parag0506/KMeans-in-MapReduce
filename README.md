@@ -225,7 +225,7 @@ Contributions to enhance the project are welcome. Please create a branch for you
 
 ## Acknowledgments
 
-- Yahoo! for providing the Search Marketing Advertiser Bid-Impression-Click dataset.
+- Yahoo! for providing the Search Marketing Advertiser Bid-Impression-Click dataset. A4 - Yahoo Data Targeting User Modeling, Version 1.0 (Hosted on AWS)(3.7Gb)
 - Apache Hadoop and Apache Maven communities for their open-source software.
 
 ## Contact
